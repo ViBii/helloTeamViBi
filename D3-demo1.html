@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="utf-8">
+	<title>D3-demo1基本的なdom元素の操作</title>
+</head>
+<body>
+	<p>Hello1</p>
+	<p>Hello2</p>
+	<p>Hello3</p>
+	<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+	<script type="text/javascript">
+	var p = d3.select("body").selectAll("p");
+	//p.text("hello d3");
+	//p.style("font-size","28px");
+		//この様な書き方でもいいです
+	// p.style({
+	// 		"font-size": "29px",
+	// 		"font-weight": "bold"
+	// });
+		//font-sizeのalert
+	//alert(p.style("font-size"));
+	p.style("font-size",function(){
+		//0から28の乱数を生成して、動的に文字の大きさを設定する
+		return Math.floor(Math.random() * 29) + "px";
+	});
+	// d3.select("body").append("p").text("add P");
+		//削除したい場合
+	d3.select("body").append("p").text("add P").remove();
+	
+	var dataset = [12,24,36];
+		//引数は一つの場合
+	// p.data(dataset).text(function(d){
+	// 	return d;
+	// });
+	//引数は二つの場合 iは内部ループの回数
+	p.data(dataset).text(function(d, i){
+		return i + "番目は" + d;
+	});
+	</script>
+</body>
+</html>
